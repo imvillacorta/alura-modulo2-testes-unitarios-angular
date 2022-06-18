@@ -1,4 +1,5 @@
-<app-like-widget
-  [likes]="likes"
-  (liked)="like()"
-></app-like-widget>
+<app-photo-frame description="Some description"
+                 [likes]="likes"
+                 src="https://picsum.photos/200/300"
+                 (liked)="like()">
+</app-photo-frame>
