@@ -1,6 +1,7 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { PhotoFrameComponent } from './photo-frame.component';
+import { PhotoFrameModule } from './photo-frame.module';
 
 describe('PhotoFrameComponent', () => {
   let component: PhotoFrameComponent;
@@ -8,7 +9,9 @@ describe('PhotoFrameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PhotoFrameComponent]
+      imports: [
+        PhotoFrameModule
+      ]
     })
       .compileComponents();
   });
@@ -45,5 +48,15 @@ describe('PhotoFrameComponent', () => {
     tick(500);
     expect(times).toBe(2);
   }));
+
+  it(`should display number of likes when (@input likes) is incremented`, () => {
+    fixture.detectChanges();
+    component.likes++;
+    fixture.detectChanges();
+    const element: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
+    const elementNotSpace = element.textContent.trim();
+
+    expect(elementNotSpace).toBe('1');
+  });
 
 });
